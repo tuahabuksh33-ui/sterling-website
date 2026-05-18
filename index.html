@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sterling Advisory Group | Consulting & Operational Support</title>
+  <meta name="description" content="North American consulting and operational support. AI transformation, retail strategy, offshore operations, e-commerce growth.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0A0F1E;
+      --ink-2:   #374151;
+      --ink-3:   #6B7280;
+      --paper:   #FAFAF8;
+      --white:   #FFFFFF;
+      --rule:    #E4E4E1;
+      --rule-d:  #D1D0CB;
+      --blue:    #1D4ED8;
+      --blue-d:  #1E3A8A;
+      --blue-l:  #EFF6FF;
+      --amber:   #B45309;
+      --navy:    #0A1628;
+      --green:   #059669;
+    }
+
+    html { background: var(--paper); }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1,h2,h3,h4 { font-family: 'Inter', sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+
+    .display  { font-weight: 900; letter-spacing: -0.04em; line-height: 0.91; }
+    .serif-it { font-family: 'Playfair Display', serif; font-style: italic; }
+    .mono     { font-family: 'JetBrains Mono', monospace; }
+
+    .rule-t { border-top:    1px solid var(--rule); }
+    .rule-b { border-bottom: 1px solid var(--rule); }
+
+    /* Buttons */
+    .btn-ink {
+      background: var(--ink); color: #fff;
+      font-weight: 700; font-size: .875rem; letter-spacing: .01em;
+      border: 2px solid var(--ink);
+      display: inline-flex; align-items: center; gap: .45rem;
+      transition: background .2s, border-color .2s, transform .15s;
+      cursor: pointer; border-radius: 3px;
+    }
+    .btn-ink:hover   { background: var(--blue); border-color: var(--blue); transform: translateY(-2px); }
+    .btn-ink:active  { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent; color: var(--ink);
+      font-weight: 600; font-size: .875rem;
+      border: 2px solid var(--rule-d);
+      display: inline-flex; align-items: center; gap: .45rem;
+      transition: border-color .2s, transform .15s;
+      cursor: pointer; border-radius: 3px;
+    }
+    .btn-ghost:hover  { border-color: var(--ink); transform: translateY(-2px); }
+
+    .btn-blue {
+      background: var(--blue); color: #fff;
+      font-weight: 700; font-size: .9rem;
+      border: 2px solid var(--blue);
+      display: flex; align-items: center; justify-content: center; gap: .45rem;
+      transition: background .2s, box-shadow .2s, transform .15s;
+      cursor: pointer; border-radius: 3px; width: 100%;
+    }
+    .btn-blue:hover  { background: var(--blue-d); border-color: var(--blue-d); box-shadow: 0 6px 22px rgba(29,78,216,.32); transform: translateY(-1px); }
+    .btn-blue:active { transform: translateY(0); }
+
+    /* Nav */
+    .nav-a { font-size: .875rem; font-weight: 500; color: var(--ink-2); text-decoration: none; transition: color .15s; cursor: pointer; }
+    .nav-a:hover { color: var(--blue); }
+
+    /* Cards */
+    .card {
+      background: var(--white); border: 1px solid var(--rule);
+      transition: border-color .22s, box-shadow .22s, transform .22s;
+      border-radius: 3px; overflow: hidden;
+    }
+    .card:hover { border-color: var(--blue); box-shadow: 0 10px 40px rgba(29,78,216,.1); transform: translateY(-4px); }
+
+    /* Section label */
+    .s-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem; font-weight: 500;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: .22rem .65rem; border-radius: 2px;
+      display: inline-block;
+    }
+    .s-tag-blue   { background: #EFF6FF; color: var(--blue);   border: 1px solid #BFDBFE; }
+    .s-tag-amber  { background: #FEF3C7; color: var(--amber);  border: 1px solid #FDE68A; }
+    .s-tag-green  { background: #ECFDF5; color: var(--green);  border: 1px solid #A7F3D0; }
+    .s-tag-orange { background: #FFF7ED; color: #C2410C;       border: 1px solid #FED7AA; }
+
+    /* Section ghost number */
+    .ghost-num {
+      font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+      color: var(--rule); user-select: none; pointer-events: none;
+      font-size: clamp(5rem, 11vw, 9rem);
+    }
+
+    /* Service list item */
+    .svc-row { display: flex; flex-direction: column; gap: 0; }
+    .svc-item { padding: .9rem 0; border-top: 1px solid var(--rule); }
+    .svc-item:first-child { border-top: none; padding-top: 0; }
+
+    /* Approach step */
+    .step-circle {
+      width: 52px; height: 52px; border-radius: 50%;
+      border: 2px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-weight: 900; font-size: 1.1rem; color: var(--blue);
+    }
+    .step-line {
+      flex: 1; height: 2px; background: var(--rule);
+      position: relative;
+    }
+    .step-line::after {
+      content: ''; position: absolute;
+      top: 50%; right: 0; transform: translateY(-50%);
+      border-left: 7px solid var(--rule-d);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+
+    /* Credential card (team) */
+    .cred-card {
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 1.75rem; border-radius: 3px;
+      display: flex; flex-direction: column;
+    }
+
+    /* Form */
+    .finput {
+      background: var(--white); border: 1px solid var(--rule);
+      color: var(--ink); font-family: 'Inter', sans-serif; font-size: .9rem;
+      padding: .75rem 1rem; width: 100%; border-radius: 3px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .finput::placeholder { color: #9CA3AF; }
+    .finput:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,.1); }
+    .finput.err { border-color: #EF4444 !important; }
+
+    .flabel { display: block; font-size: .8125rem; font-weight: 600; color: var(--ink-2); margin-bottom: .38rem; }
+    .req { color: #EF4444; }
+
+    /* Checkbox */
+    .chk-row { display: flex; align-items: center; gap: .7rem; padding: .55rem .75rem; cursor: pointer; transition: background .15s; }
+    .chk-row:hover { background: #F9FAFB; }
+    .chk-row input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--blue); flex-shrink: 0; cursor: pointer; }
+    .chk-row span { font-size: .875rem; color: var(--ink-2); }
+    .chk-group { font-family: 'JetBrains Mono', monospace; font-size: .63rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); padding: .75rem .75rem .28rem; border-top: 1px solid var(--rule); }
+    .chk-group:first-child { border-top: none; }
+
+    /* Image overlays */
+    .img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(10,15,30,.7) 0%, rgba(10,15,30,.3) 100%);
+    }
+
+    /* Stat bar */
+    .stat-bar-track { background: var(--rule); height: 4px; border-radius: 2px; overflow: hidden; margin-top: .4rem; }
+    .stat-bar-fill  { height: 100%; border-radius: 2px; background: var(--blue); transition: width 1.2s ease; }
+
+    /* Process connector (desktop) */
+    .connector { display: none; }
+    @media (min-width: 768px) { .connector { display: flex; } }
+
+    /* Link arrow */
+    .link-arr {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-weight: 600; font-size: .875rem; color: var(--blue); text-decoration: none;
+      border-bottom: 1px solid transparent; transition: border-color .2s, gap .2s;
+    }
+    .link-arr:hover { border-bottom-color: var(--blue); gap: .6rem; }
+
+    /* Mobile menu */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: block; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spin { animation: spin .85s linear infinite; }
+
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .bob { animation: bob 4s ease-in-out infinite; }
+
+    @keyframes count-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .count-in { animation: count-up .6s ease forwards; }
+
+    /* ── Service multi-select dropdown ── */
+    .svc-dd { position: relative; }
+
+    .svc-trigger {
+      width: 100%; background: var(--white); border: 1px solid var(--rule);
+      padding: .75rem 1rem; display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; font-family: 'Inter', sans-serif; font-size: .9rem; color: var(--ink);
+      text-align: left; border-radius: 3px; transition: border-color .2s, box-shadow .2s;
+    }
+    .svc-trigger:hover { border-color: var(--ink-3); }
+    .svc-trigger.open  { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,78,216,.1); }
+    .svc-trigger.err   { border-color: #EF4444 !important; }
+    .svc-trigger .ph   { color: #9CA3AF; }
+    .svc-trigger .dd-chevron { flex-shrink: 0; transition: transform .2s; color: var(--ink-3); }
+    .svc-trigger.open .dd-chevron { transform: rotate(180deg); }
+
+    .svc-panel {
+      position: absolute; top: calc(100% + 3px); left: 0; right: 0;
+      background: var(--white); border: 1px solid var(--rule); border-radius: 3px;
+      box-shadow: 0 10px 36px rgba(0,0,0,.13); max-height: 380px; overflow-y: auto; z-index: 200;
+    }
+
+    .dd-cat-btn {
+      width: 100%; display: flex; align-items: center; gap: .55rem;
+      padding: .7rem 1rem; background: none; border: none; border-bottom: 1px solid var(--rule);
+      cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 700; font-size: .82rem;
+      color: var(--ink); text-align: left; transition: background .15s;
+    }
+    .dd-cat-btn:hover { background: #F9FAFB; }
+    .dd-cat-btn .cat-chevron { transition: transform .2s; flex-shrink: 0; color: var(--ink-3); }
+    .dd-cat-btn.open .cat-chevron { transform: rotate(90deg); }
+
+    .dd-cat-count {
+      margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+      font-weight: 600; color: #fff; background: var(--blue);
+      border-radius: 10px; padding: .1rem .45rem; display: none;
+    }
+    .dd-cat-count.vis { display: inline-block; }
+
+    .dd-subhead {
+      font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--ink-3); background: #F9FAFB;
+      padding: .55rem 1rem .25rem 2rem;
+    }
+
+    .dd-item {
+      display: flex; align-items: center; gap: .65rem;
+      padding: .48rem 1rem .48rem 2rem; cursor: pointer; transition: background .15s;
+    }
+    .dd-item.l1 { padding-left: 1rem; }
+    .dd-item:hover { background: var(--blue-l); }
+    .dd-item input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--blue); flex-shrink: 0; cursor: pointer; }
+    .dd-item span { font-size: .865rem; color: var(--ink-2); }
+
+    .svc-chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .5rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: .3rem;
+      background: var(--blue-l); border: 1px solid #BFDBFE; color: var(--blue);
+      font-size: .72rem; font-weight: 600; padding: .22rem .45rem .22rem .6rem; border-radius: 2px;
+    }
+    .chip-x {
+      background: none; border: none; cursor: pointer; color: var(--blue);
+      padding: 0; display: flex; align-items: center; opacity: .55; transition: opacity .15s;
+    }
+    .chip-x:hover { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bob,.spin { animation: none; }
+      .card:hover,.btn-ink:hover,.btn-ghost:hover,.btn-blue:hover { transform: none; }
+      .stat-bar-fill { transition: none; }
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--rule-d); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAVBAR ══════════════════ -->
+<header class="fixed top-0 left-0 right-0 z-50 rule-b"
+        style="background:rgba(250,250,248,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;">
+
+    <a href="#" style="text-decoration:none;display:flex;align-items:center;gap:.6rem;">
+      <div style="width:32px;height:32px;background:var(--ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 0L14 4V10L7 14L0 10V4L7 0Z" fill="white"/></svg>
+      </div>
+      <span style="font-weight:800;font-size:1rem;letter-spacing:-.02em;color:var(--ink);">Sterling<span style="color:var(--blue);">Advisory</span></span>
+    </a>
+
+    <nav class="hidden md:flex" style="align-items:center;gap:2rem;">
+      <a href="#services" class="nav-a">Services</a>
+      <a href="#approach" class="nav-a">Approach</a>
+      <a href="#team" class="nav-a">Team</a>
+      <a href="#portfolio" class="nav-a">Portfolio</a>
+      <a href="#inquiry" class="nav-a">Contact</a>
+      <a href="#inquiry" class="btn-ink" style="padding:.6rem 1.25rem;">
+        Get Started
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </nav>
+
+    <button id="menu-btn" onclick="toggleMenu()" aria-label="Menu" class="md:hidden" style="padding:.5rem;color:var(--ink-2);background:none;border:none;cursor:pointer;">
+      <svg id="ico-o" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="ico-c" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" style="background:var(--white);border-top:1px solid var(--rule);">
+    <div style="padding:1rem 2rem;display:flex;flex-direction:column;gap:.25rem;">
+      <a href="#services"  onclick="toggleMenu()" style="padding:.65rem 0;font-size:.9rem;font-weight:500;color:var(--ink-2);text-decoration:none;">Services</a>
+      <a href="#approach"  onclick="toggleMenu()" style="padding:.65rem 0;font-size:.9rem;font-weight:500;color:var(--ink-2);text-decoration:none;">Approach</a>
+      <a href="#team"      onclick="toggleMenu()" style="padding:.65rem 0;font-size:.9rem;font-weight:500;color:var(--ink-2);text-decoration:none;">Team</a>
+      <a href="#portfolio" onclick="toggleMenu()" style="padding:.65rem 0;font-size:.9rem;font-weight:500;color:var(--ink-2);text-decoration:none;">Portfolio</a>
+      <a href="#inquiry"   onclick="toggleMenu()" style="padding:.65rem 0;font-size:.9rem;font-weight:500;color:var(--ink-2);text-decoration:none;">Contact</a>
+      <a href="#inquiry"   onclick="toggleMenu()" class="btn-ink" style="padding:.75rem 1.25rem;margin-top:.5rem;justify-content:center;">Get Started</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section style="background:var(--white);padding-top:64px;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <!-- Main hero split -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:calc(100vh - 64px);" class="flex flex-col lg:grid">
+      <!-- Left: copy -->
+      <div style="display:flex;flex-direction:column;justify-content:center;padding:4rem 3rem 4rem 0;border-right:1px solid var(--rule);" class="lg:pr-12">
+        <div class="mono" style="font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.75rem;">
+          North American Consulting &amp; Operational Support
+        </div>
+
+        <h1 class="display" style="font-size:clamp(3rem,6.5vw,5.2rem);color:var(--ink);margin-bottom:1.75rem;">
+          We make<br>
+          <span style="color:var(--blue);">businesses</span><br>
+          run better.
+        </h1>
+
+        <p class="serif-it" style="font-size:1.15rem;color:var(--ink-2);max-width:420px;line-height:1.65;margin-bottom:2.25rem;">
+          Strategic consulting and operational support for companies ready to transform — from agentic AI to e-commerce dominance.
+        </p>
+
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:3rem;">
+          <a href="#inquiry" class="btn-ink" style="padding:.875rem 1.75rem;">
+            Start Your Inquiry
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#services" class="btn-ghost" style="padding:.875rem 1.75rem;">Explore Services</a>
+        </div>
+
+        <!-- Competency bars infographic -->
+        <div style="border-top:1px solid var(--rule);padding-top:2rem;">
+          <div class="mono" style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:1.25rem;">Core Competencies</div>
+          <div style="display:flex;flex-direction:column;gap:1rem;">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;">
+                <span style="font-size:.8rem;font-weight:600;">AI &amp; Process Transformation</span>
+                <span class="mono" style="font-size:.72rem;color:var(--blue);">Advanced</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width:0" data-width="92%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;">
+                <span style="font-size:.8rem;font-weight:600;">Retail &amp; Supply Chain</span>
+                <span class="mono" style="font-size:.72rem;color:var(--blue);">Advanced</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width:0" data-width="88%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;">
+                <span style="font-size:.8rem;font-weight:600;">E-Commerce &amp; Digital Growth</span>
+                <span class="mono" style="font-size:.72rem;color:var(--blue);">Expert</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width:0" data-width="95%"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.3rem;">
+                <span style="font-size:.8rem;font-weight:600;">Operational &amp; Back-Office</span>
+                <span class="mono" style="font-size:.72rem;color:var(--blue);">Expert</span>
+              </div>
+              <div class="stat-bar-track"><div class="stat-bar-fill" style="width:0" data-width="90%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: hero image + credential overlay -->
+      <div style="position:relative;min-height:500px;overflow:hidden;" class="hidden lg:block">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
+             alt="Strategy consulting team at work"
+             style="width:100%;height:100%;object-fit:cover;object-position:center;">
+        <!-- Dark overlay at bottom for credentials -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(10,15,30,.92) 0%, rgba(10,15,30,.3) 50%, transparent 100%);"></div>
+
+        <!-- Credential strip overlaid on photo -->
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:2rem;">
+          <div class="mono" style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem;">Founding Team Credentials</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;">
+            <div style="border-left:3px solid var(--blue);padding-left:.75rem;">
+              <div style="font-weight:700;font-size:.82rem;color:#fff;">Harvard Affiliate MBA</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.1rem;">Business Administration</div>
+            </div>
+            <div style="border-left:3px solid #60A5FA;padding-left:.75rem;">
+              <div style="font-weight:700;font-size:.82rem;color:#fff;">GWU — MIS</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.1rem;">Management Information Systems</div>
+            </div>
+            <div style="border-left:3px solid #A78BFA;padding-left:.75rem;">
+              <div style="font-weight:700;font-size:.82rem;color:#fff;">Certified AI Specialist</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.1rem;">AI &amp; Machine Learning</div>
+            </div>
+            <div style="border-left:3px solid #4ADE80;padding-left:.75rem;">
+              <div style="font-weight:700;font-size:.82rem;color:#fff;">PMP Certified</div>
+              <div style="font-size:.72rem;color:rgba(255,255,255,.5);margin-top:.1rem;">PMI Global Standard</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div style="border-top:1px solid var(--rule);background:var(--paper);">
+    <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--rule);" class="grid grid-cols-2 md:grid-cols-4">
+      <div style="padding:1.5rem 2rem;border-right:1px solid var(--rule);text-align:center;">
+        <div style="font-weight:900;font-size:2.2rem;letter-spacing:-.04em;color:var(--ink);">3</div>
+        <div class="mono" style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.2rem;">Service Verticals</div>
+      </div>
+      <div style="padding:1.5rem 2rem;border-right:1px solid var(--rule);text-align:center;">
+        <div style="font-weight:900;font-size:2.2rem;letter-spacing:-.04em;color:var(--ink);">14+</div>
+        <div class="mono" style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.2rem;">Distinct Offerings</div>
+      </div>
+      <div style="padding:1.5rem 2rem;border-right:1px solid var(--rule);text-align:center;">
+        <div style="font-weight:900;font-size:2.2rem;letter-spacing:-.04em;color:var(--blue);">AI</div>
+        <div class="mono" style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.2rem;">First Approach</div>
+      </div>
+      <div style="padding:1.5rem 2rem;text-align:center;">
+        <div style="font-weight:900;font-size:2.2rem;letter-spacing:-.04em;color:var(--ink);">24h</div>
+        <div class="mono" style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-top:.2rem;">Response Time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ SERVICES ══════════════════ -->
+<section id="services" style="padding:6rem 0;background:var(--paper);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <!-- Section header -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1.25rem;margin-bottom:4rem;">
+      <div>
+        <span class="ghost-num" style="display:block;">01</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.75rem);margin-top:-.4rem;">Services</h2>
+      </div>
+      <p class="serif-it hidden sm:block" style="font-size:.95rem;color:var(--ink-3);max-width:220px;text-align:right;line-height:1.5;">Three integrated verticals, one practice.</p>
+    </div>
+
+
+    <!-- ── TRANSFORMATIONAL ── -->
+    <div style="margin-bottom:5rem;">
+      <div style="margin-bottom:1.5rem;"><span class="s-tag s-tag-blue">01 / Transformational</span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;" class="grid grid-cols-1 md:grid-cols-2">
+
+        <!-- Tech card -->
+        <div class="card">
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80"
+                 alt="Technology and AI" style="width:100%;height:100%;object-fit:cover;">
+            <div class="img-overlay"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;display:flex;align-items:center;gap:.6rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <span style="font-weight:700;color:#fff;font-size:1rem;">Technology</span>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <div class="svc-row">
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Agentic Process Transformation</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">Deploy AI agents to automate and elevate core business workflows</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Workflow Orchestration</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">End-to-end process design and intelligent automation integration</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Process Excellence</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">Lean methodology and continuous improvement frameworks</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Project Management</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">PMP-certified delivery across agile and waterfall frameworks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Retail card -->
+        <div class="card">
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
+                 alt="Retail store" style="width:100%;height:100%;object-fit:cover;">
+            <div class="img-overlay"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;display:flex;align-items:center;gap:.6rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FCD34D" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              <span style="font-weight:700;color:#fff;font-size:1rem;">Retail</span>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <div class="svc-row">
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Supply Chain Optimization</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">End-to-end visibility, cost reduction, and resilience planning</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Assortment Rationalization</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">Data-driven SKU strategy to maximize sales and reduce waste</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Pricing Strategy</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">Competitive models aligned with margin and market position</div>
+              </div>
+              <div class="svc-item">
+                <div style="font-weight:600;font-size:.9rem;margin-bottom:.2rem;">Merchandising</div>
+                <div style="font-size:.8rem;color:var(--ink-3);">Visual and digital merchandising to drive conversion and loyalty</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── OPERATIONAL ── -->
+    <div style="margin-bottom:5rem;">
+      <div style="margin-bottom:1.5rem;"><span class="s-tag s-tag-green">02 / Operational</span></div>
+
+      <div class="card" style="overflow:hidden;">
+        <div style="display:grid;grid-template-columns:1.1fr 2fr;" class="grid grid-cols-1 md:grid-cols-2">
+          <!-- Image side -->
+          <div style="position:relative;min-height:260px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80"
+                 alt="Offshore professional team collaboration"
+                 style="width:100%;height:100%;object-fit:cover;">
+            <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,15,30,.65),rgba(10,15,30,.3));"></div>
+            <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;">
+              <div class="mono" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem;">Offshore Excellence</div>
+              <p style="font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.5;">Enterprise-grade back-office support at competitive cost — seamlessly integrated with your team.</p>
+            </div>
+          </div>
+          <!-- Services side -->
+          <div style="padding:2rem 2.5rem;display:flex;flex-direction:column;gap:0;">
+            <div style="padding-bottom:1.25rem;margin-bottom:1.25rem;border-bottom:1px solid var(--rule);display:flex;gap:1rem;align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:.92rem;margin-bottom:.25rem;">Procurement</div>
+                <div style="font-size:.8rem;color:var(--ink-3);line-height:1.55;">Strategic sourcing, vendor management, purchase order processing, and cost optimisation at scale.</div>
+              </div>
+            </div>
+            <div style="padding-bottom:1.25rem;margin-bottom:1.25rem;border-bottom:1px solid var(--rule);display:flex;gap:1rem;align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:.92rem;margin-bottom:.25rem;">Finance</div>
+                <div style="font-size:.8rem;color:var(--ink-3);line-height:1.55;">Bookkeeping, financial reporting, accounts payable &amp; receivable, and month-end close support.</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:1rem;align-items:flex-start;">
+              <div style="width:36px;height:36px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.1rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <div style="font-weight:700;font-size:.92rem;margin-bottom:.25rem;">Payroll</div>
+                <div style="font-size:.8rem;color:var(--ink-3);line-height:1.55;">Full-cycle payroll processing, compliance, benefits administration, and HR operations.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ── E-COMMERCE ── -->
+    <div>
+      <div style="margin-bottom:1.5rem;"><span class="s-tag s-tag-orange">03 / E-Commerce</span></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;" class="grid grid-cols-1 md:grid-cols-2">
+
+        <!-- Amazon -->
+        <div class="card">
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"
+                 alt="Amazon warehouse fulfillment" style="width:100%;height:100%;object-fit:cover;">
+            <div class="img-overlay"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;">
+              <div style="display:inline-block;background:#FF9900;color:#111;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.06em;padding:.2rem .6rem;border-radius:2px;margin-bottom:.4rem;">amazon</div>
+              <div style="font-weight:700;color:#fff;font-size:1rem;">Marketplace</div>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <p style="font-size:.82rem;color:var(--ink-3);line-height:1.6;margin-bottom:1.1rem;">Full-service Amazon setup and growth for brands entering or scaling on the world's largest marketplace.</p>
+            <div class="svc-row">
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Account Setup &amp; Management</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Listing Development &amp; Copywriting</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Product Page Optimization (A+ Content)</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">PPC Campaign Management &amp; Optimization</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Brand Registry &amp; Storefront Design</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Independent Store -->
+        <div class="card">
+          <div style="position:relative;height:200px;overflow:hidden;">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
+                 alt="E-commerce website development" style="width:100%;height:100%;object-fit:cover;">
+            <div class="img-overlay"></div>
+            <div style="position:absolute;bottom:1.25rem;left:1.25rem;">
+              <div style="display:inline-block;background:var(--blue);color:#fff;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;letter-spacing:.06em;padding:.2rem .6rem;border-radius:2px;margin-bottom:.4rem;">owned channel</div>
+              <div style="font-weight:700;color:#fff;font-size:1rem;">Independent Store</div>
+            </div>
+          </div>
+          <div style="padding:1.5rem;">
+            <p style="font-size:.82rem;color:var(--ink-3);line-height:1.6;margin-bottom:1.1rem;">Build and grow a high-converting branded store with durable organic reach and full ownership.</p>
+            <div class="svc-row">
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Website Development (Shopify, WooCommerce, custom)</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Product Page Development &amp; UX</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Search Engine Optimization (SEO)</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Conversion Rate Optimization</span>
+              </div>
+              <div class="svc-item" style="display:flex;align-items:center;gap:.6rem;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span style="font-size:.875rem;font-weight:500;">Digital Marketing Integration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ OUR APPROACH (Infographic) ══════════════════ -->
+<section id="approach" style="padding:6rem 0;background:var(--white);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1.25rem;margin-bottom:4rem;">
+      <div>
+        <span class="ghost-num">02</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.75rem);margin-top:-.4rem;">Our Approach</h2>
+      </div>
+      <p class="serif-it hidden sm:block" style="font-size:.95rem;color:var(--ink-3);max-width:220px;text-align:right;line-height:1.5;">From first call to measurable results.</p>
+    </div>
+
+    <!-- Desktop: horizontal flow -->
+    <div class="hidden md:flex" style="align-items:flex-start;gap:0;margin-bottom:4rem;">
+
+      <!-- Step 1 -->
+      <div style="flex:1;text-align:center;padding:0 1rem;">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;background:var(--blue-l);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <div class="mono" style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;">01</div>
+        <div style="font-weight:800;font-size:1rem;margin-bottom:.5rem;">Discover</div>
+        <p style="font-size:.8rem;color:var(--ink-3);line-height:1.6;max-width:180px;margin:0 auto;">Deep-dive into your operations, goals, and market position. We ask the hard questions first.</p>
+        <div style="margin-top:1rem;display:inline-block;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:2px;padding:.2rem .6rem;">
+          <span class="mono" style="font-size:.62rem;color:var(--blue);">Week 1–2</span>
+        </div>
+      </div>
+
+      <!-- Connector 1→2 -->
+      <div style="flex-shrink:0;padding-top:2rem;display:flex;align-items:center;width:40px;">
+        <div style="height:2px;width:100%;background:var(--rule);position:relative;">
+          <div style="position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-left:8px solid var(--rule-d);border-top:5px solid transparent;border-bottom:5px solid transparent;"></div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="flex:1;text-align:center;padding:0 1rem;">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;background:var(--blue-l);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+          </svg>
+        </div>
+        <div class="mono" style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;">02</div>
+        <div style="font-weight:800;font-size:1rem;margin-bottom:.5rem;">Strategize</div>
+        <p style="font-size:.8rem;color:var(--ink-3);line-height:1.6;max-width:180px;margin:0 auto;">Co-create a tailored roadmap with clear milestones, owners, and measurable success criteria.</p>
+        <div style="margin-top:1rem;display:inline-block;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:2px;padding:.2rem .6rem;">
+          <span class="mono" style="font-size:.62rem;color:var(--blue);">Week 2–4</span>
+        </div>
+      </div>
+
+      <!-- Connector 2→3 -->
+      <div style="flex-shrink:0;padding-top:2rem;display:flex;align-items:center;width:40px;">
+        <div style="height:2px;width:100%;background:var(--rule);position:relative;">
+          <div style="position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-left:8px solid var(--rule-d);border-top:5px solid transparent;border-bottom:5px solid transparent;"></div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div style="flex:1;text-align:center;padding:0 1rem;">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--blue);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;background:var(--blue-l);">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <div class="mono" style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem;">03</div>
+        <div style="font-weight:800;font-size:1rem;margin-bottom:.5rem;">Execute</div>
+        <p style="font-size:.8rem;color:var(--ink-3);line-height:1.6;max-width:180px;margin:0 auto;">Our certified team delivers with precision — on time, on budget, and with full transparency.</p>
+        <div style="margin-top:1rem;display:inline-block;background:#EFF6FF;border:1px solid #BFDBFE;border-radius:2px;padding:.2rem .6rem;">
+          <span class="mono" style="font-size:.62rem;color:var(--blue);">Ongoing</span>
+        </div>
+      </div>
+
+      <!-- Connector 3→4 -->
+      <div style="flex-shrink:0;padding-top:2rem;display:flex;align-items:center;width:40px;">
+        <div style="height:2px;width:100%;background:var(--rule);position:relative;">
+          <div style="position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-left:8px solid var(--rule-d);border-top:5px solid transparent;border-bottom:5px solid transparent;"></div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="flex:1;text-align:center;padding:0 1rem;">
+        <div style="width:64px;height:64px;border-radius:50%;border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;background:#ECFDF5;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="mono" style="font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:.4rem;">04</div>
+        <div style="font-weight:800;font-size:1rem;margin-bottom:.5rem;">Measure</div>
+        <p style="font-size:.8rem;color:var(--ink-3);line-height:1.6;max-width:180px;margin:0 auto;">Track KPIs, report outcomes, and continuously optimize — so your ROI compounds over time.</p>
+        <div style="margin-top:1rem;display:inline-block;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:2px;padding:.2rem .6rem;">
+          <span class="mono" style="font-size:.62rem;color:var(--green);">Monthly</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: vertical flow -->
+    <div class="md:hidden" style="display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem;">
+      <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);background:var(--blue-l);display:flex;align-items:center;justify-content:center;">
+            <span style="font-weight:900;font-size:.9rem;color:var(--blue);">1</span>
+          </div>
+          <div style="width:2px;height:40px;background:var(--rule);margin-top:.5rem;"></div>
+        </div>
+        <div style="padding-top:.4rem;">
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.25rem;">Discover <span class="mono" style="font-size:.65rem;color:var(--ink-3);font-weight:400;">· Week 1–2</span></div>
+          <p style="font-size:.82rem;color:var(--ink-3);line-height:1.55;">Deep-dive into your operations, goals, and market position.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);background:var(--blue-l);display:flex;align-items:center;justify-content:center;">
+            <span style="font-weight:900;font-size:.9rem;color:var(--blue);">2</span>
+          </div>
+          <div style="width:2px;height:40px;background:var(--rule);margin-top:.5rem;"></div>
+        </div>
+        <div style="padding-top:.4rem;">
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.25rem;">Strategize <span class="mono" style="font-size:.65rem;color:var(--ink-3);font-weight:400;">· Week 2–4</span></div>
+          <p style="font-size:.82rem;color:var(--ink-3);line-height:1.55;">Co-create a tailored roadmap with clear milestones and success criteria.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:44px;height:44px;border-radius:50%;border:2px solid var(--blue);background:var(--blue-l);display:flex;align-items:center;justify-content:center;">
+            <span style="font-weight:900;font-size:.9rem;color:var(--blue);">3</span>
+          </div>
+          <div style="width:2px;height:40px;background:var(--rule);margin-top:.5rem;"></div>
+        </div>
+        <div style="padding-top:.4rem;">
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.25rem;">Execute <span class="mono" style="font-size:.65rem;color:var(--ink-3);font-weight:400;">· Ongoing</span></div>
+          <p style="font-size:.82rem;color:var(--ink-3);line-height:1.55;">Certified delivery — on time, on budget, and with full transparency.</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:1.25rem;align-items:flex-start;">
+        <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+          <div style="width:44px;height:44px;border-radius:50%;border:2px solid var(--green);background:#ECFDF5;display:flex;align-items:center;justify-content:center;">
+            <span style="font-weight:900;font-size:.9rem;color:var(--green);">4</span>
+          </div>
+        </div>
+        <div style="padding-top:.4rem;">
+          <div style="font-weight:800;font-size:.95rem;margin-bottom:.25rem;">Measure <span class="mono" style="font-size:.65rem;color:var(--ink-3);font-weight:400;">· Monthly</span></div>
+          <p style="font-size:.82rem;color:var(--ink-3);line-height:1.55;">Track KPIs, report outcomes, and continuously optimize.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Sterling: 3-column metrics infographic -->
+    <div style="border-top:1px solid var(--rule);padding-top:3rem;">
+      <div class="mono" style="font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:2rem;text-align:center;">Why Sterling Advisory</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);" class="grid grid-cols-1 md:grid-cols-3">
+        <div style="background:var(--white);padding:2rem;text-align:center;">
+          <div style="font-weight:900;font-size:2.5rem;letter-spacing:-.04em;color:var(--ink);margin-bottom:.4rem;">Elite</div>
+          <div style="font-weight:600;font-size:.875rem;margin-bottom:.5rem;">Academic Pedigree</div>
+          <p style="font-size:.78rem;color:var(--ink-3);line-height:1.55;">Harvard MBA + GWU MIS founding team brings institutional-grade strategy to every engagement.</p>
+        </div>
+        <div style="background:var(--white);padding:2rem;text-align:center;">
+          <div style="font-weight:900;font-size:2.5rem;letter-spacing:-.04em;color:var(--blue);margin-bottom:.4rem;">AI-1st</div>
+          <div style="font-weight:600;font-size:.875rem;margin-bottom:.5rem;">Technology Leadership</div>
+          <p style="font-size:.78rem;color:var(--ink-3);line-height:1.55;">Certified AI specialists embed agentic intelligence into every process we design.</p>
+        </div>
+        <div style="background:var(--white);padding:2rem;text-align:center;">
+          <div style="font-weight:900;font-size:2.5rem;letter-spacing:-.04em;color:var(--ink);margin-bottom:.4rem;">Full</div>
+          <div style="font-weight:600;font-size:.875rem;margin-bottom:.5rem;">Service Coverage</div>
+          <p style="font-size:.78rem;color:var(--ink-3);line-height:1.55;">Strategy through execution, from C-suite roadmaps to offshore operational delivery.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ TEAM ══════════════════ -->
+<section id="team" style="padding:6rem 0;background:var(--navy);position:relative;overflow:hidden;">
+  <!-- Background image -->
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=60"
+         alt="Modern professional office" style="width:100%;height:100%;object-fit:cover;opacity:.12;">
+  </div>
+
+  <div style="position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:1.25rem;margin-bottom:4rem;">
+      <div>
+        <span class="ghost-num" style="color:rgba(255,255,255,.06);">03</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.75rem);color:#fff;margin-top:-.4rem;">Our Team</h2>
+      </div>
+      <p class="serif-it hidden sm:block" style="font-size:.95rem;color:rgba(255,255,255,.35);max-width:220px;text-align:right;line-height:1.5;">Elite credentials. Real-world results.</p>
+    </div>
+
+    <!-- Credentials -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);margin-bottom:4rem;" class="grid grid-cols-2 md:grid-cols-4">
+      <div class="cred-card" style="background:rgba(255,255,255,.04);">
+        <div class="mono" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.9rem;">MBA</div>
+        <div style="font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.3rem;">Harvard Affiliate</div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5;flex:1;">Master of Business Administration</div>
+        <div style="margin-top:1.25rem;height:3px;width:32px;background:var(--blue);border-radius:2px;"></div>
+      </div>
+      <div class="cred-card" style="background:rgba(255,255,255,.04);">
+        <div class="mono" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.9rem;">MIS</div>
+        <div style="font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.3rem;">George Washington University</div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5;flex:1;">Management Information Systems</div>
+        <div style="margin-top:1.25rem;height:3px;width:32px;background:#60A5FA;border-radius:2px;"></div>
+      </div>
+      <div class="cred-card" style="background:rgba(255,255,255,.04);">
+        <div class="mono" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.9rem;">AI Cert</div>
+        <div style="font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.3rem;">Certified AI Specialist</div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5;flex:1;">Advanced AI &amp; Machine Learning</div>
+        <div style="margin-top:1.25rem;height:3px;width:32px;background:#A78BFA;border-radius:2px;"></div>
+      </div>
+      <div class="cred-card" style="background:rgba(255,255,255,.04);">
+        <div class="mono" style="font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:.9rem;">PMP</div>
+        <div style="font-weight:800;font-size:.95rem;color:#fff;margin-bottom:.3rem;">Project Management Professional</div>
+        <div style="font-size:.78rem;color:rgba(255,255,255,.45);line-height:1.5;flex:1;">PMI Certified — Global PM Standard</div>
+        <div style="margin-top:1.25rem;height:3px;width:32px;background:#4ADE80;border-radius:2px;"></div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div style="max-width:680px;">
+      <p class="serif-it" style="font-size:1.3rem;color:rgba(255,255,255,.65);line-height:1.65;">
+        "Ivy League strategy, certified AI expertise, and proven project execution — delivered for businesses of every size."
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ PORTFOLIO ══════════════════ -->
+<section id="portfolio" style="padding:6rem 0;background:var(--white);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1.25rem;margin-bottom:4rem;">
+      <div>
+        <span class="ghost-num">04</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.75rem);margin-top:-.4rem;">Portfolio</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;" class="grid grid-cols-1 md:grid-cols-2">
+      <!-- Left -->
+      <div>
+        <div class="bob" style="display:inline-block;margin-bottom:2rem;">
+          <div style="width:72px;height:72px;background:var(--ink);display:flex;align-items:center;justify-content:center;">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8M12 17v4M9 9l2 2 4-4"/>
+            </svg>
+          </div>
+        </div>
+        <h3 style="font-weight:800;font-size:1.75rem;letter-spacing:-.03em;margin-bottom:1rem;">In development.</h3>
+        <p style="font-size:.95rem;color:var(--ink-3);line-height:1.7;max-width:400px;margin-bottom:2rem;">
+          We're curating a showcase of client engagements, case studies, and measurable outcomes across all three verticals. Connect with us directly to learn more about our work.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+          <a href="#inquiry" class="btn-ink" style="padding:.875rem 1.5rem;">Discuss Your Project</a>
+          <!-- Update href once portfolio is live -->
+          <a href="/portfolio" class="link-arr">
+            View Portfolio
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: photo + preview tiles -->
+      <div>
+        <div style="position:relative;height:340px;overflow:hidden;border:1px solid var(--rule);">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=700&q=80"
+               alt="Strategy and planning session" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,15,30,.8) 0%,transparent 50%);"></div>
+          <div style="position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;">
+            <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:.75rem;text-align:center;">
+              <div style="font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:-.03em;">AI</div>
+              <div class="mono" style="font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.15rem;">Tech Projects</div>
+            </div>
+            <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:.75rem;text-align:center;">
+              <div style="font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:-.03em;">DTC</div>
+              <div class="mono" style="font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.15rem;">E-Commerce</div>
+            </div>
+            <div style="background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);border-radius:3px;padding:.75rem;text-align:center;">
+              <div style="font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:-.03em;">OPS</div>
+              <div class="mono" style="font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:.15rem;">Operations</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ INQUIRY ══════════════════ -->
+<section id="inquiry" style="padding:6rem 0;background:var(--paper);">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;">
+
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1.25rem;margin-bottom:4rem;">
+      <div>
+        <span class="ghost-num">05</span>
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.75rem);margin-top:-.4rem;">Start an Inquiry</h2>
+      </div>
+      <p class="serif-it hidden sm:block" style="font-size:.95rem;color:var(--ink-3);max-width:220px;text-align:right;line-height:1.5;">We reply within 24 hours.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;" class="grid grid-cols-1 lg:grid-cols-3">
+
+      <!-- Left context -->
+      <div>
+        <h3 style="font-weight:800;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:.75rem;">Tell us about your business.</h3>
+        <p style="font-size:.875rem;color:var(--ink-3);line-height:1.7;margin-bottom:2rem;">Select the services that interest you. We'll follow up with a tailored response — no obligation, strictly confidential.</p>
+        <div style="display:flex;flex-direction:column;gap:1.1rem;">
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <div style="width:32px;height:32px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 13.82a19.79 19.79 0 01-3.07-8.67A2 2 0 011.95 3h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 17z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:.83rem;margin-bottom:.15rem;">24-Hour Response</div>
+              <div style="font-size:.76rem;color:var(--ink-3);">Every inquiry gets a personal reply</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <div style="width:32px;height:32px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:.83rem;margin-bottom:.15rem;">Strictly Confidential</div>
+              <div style="font-size:.76rem;color:var(--ink-3);">Your data is never shared or sold</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:.75rem;">
+            <div style="width:32px;height:32px;background:var(--blue-l);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <div style="font-weight:600;font-size:.83rem;margin-bottom:.15rem;">No Obligation</div>
+              <div style="font-size:.76rem;color:var(--ink-3);">An inquiry is just a conversation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div style="grid-column:span 2;" class="lg:col-span-2">
+        <div style="background:var(--white);border:1px solid var(--rule);padding:2.5rem;border-radius:3px;">
+
+          <!-- Success -->
+          <div id="form-success" style="display:none;text-align:center;padding:3rem 0;">
+            <div style="width:52px;height:52px;background:#ECFDF5;border:1px solid #A7F3D0;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div style="font-weight:800;font-size:1.1rem;margin-bottom:.5rem;">Inquiry received!</div>
+            <div style="font-size:.875rem;color:var(--ink-3);">We'll be in touch within 24 hours.</div>
+          </div>
+
+          <form id="inquiry-form" onsubmit="handleSubmit(event)" novalidate>
+            <!-- Services multi-select dropdown -->
+            <div style="margin-bottom:1.75rem;">
+              <div class="flabel">Services of Interest <span class="req">*</span></div>
+
+              <div class="svc-dd" id="svc-dd">
+                <!-- Trigger -->
+                <button type="button" id="svc-trigger" class="svc-trigger"
+                        onclick="toggleSvcDd(event)" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="svc-lbl" class="ph">Select services of interest…</span>
+                  <svg class="dd-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+
+                <!-- Panel -->
+                <div id="svc-panel" class="svc-panel" style="display:none;" role="listbox" aria-multiselectable="true">
+
+                  <!-- ① Transformational -->
+                  <button type="button" class="dd-cat-btn" onclick="toggleCat(this)">
+                    <svg class="cat-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    Transformational
+                    <span class="dd-cat-count" id="cnt-t">0</span>
+                  </button>
+                  <div class="dd-cat-body" style="display:none;">
+                    <div class="dd-subhead">Technology</div>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Agentic Process Transformation"  onchange="onSvc(this,'t')"><span>Agentic Process Transformation</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Workflow Orchestration"           onchange="onSvc(this,'t')"><span>Workflow Orchestration</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Process Excellence"               onchange="onSvc(this,'t')"><span>Process Excellence</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Project Management"               onchange="onSvc(this,'t')"><span>Project Management</span></label>
+                    <div class="dd-subhead">Retail</div>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Supply Chain Optimization"        onchange="onSvc(this,'t')"><span>Supply Chain Optimization</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Assortment Rationalization"       onchange="onSvc(this,'t')"><span>Assortment Rationalization</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Pricing Strategy"                 onchange="onSvc(this,'t')"><span>Pricing Strategy</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Merchandising"                    onchange="onSvc(this,'t')"><span>Merchandising</span></label>
+                  </div>
+
+                  <!-- ② Operational -->
+                  <button type="button" class="dd-cat-btn" onclick="toggleCat(this)">
+                    <svg class="cat-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    Operational Support
+                    <span class="dd-cat-count" id="cnt-o">0</span>
+                  </button>
+                  <div class="dd-cat-body" style="display:none;">
+                    <label class="dd-item l1"><input type="checkbox" name="services" value="Offshore Procurement" onchange="onSvc(this,'o')"><span>Offshore Procurement Support</span></label>
+                    <label class="dd-item l1"><input type="checkbox" name="services" value="Finance Support"      onchange="onSvc(this,'o')"><span>Finance Support</span></label>
+                    <label class="dd-item l1"><input type="checkbox" name="services" value="Payroll Support"      onchange="onSvc(this,'o')"><span>Payroll Support</span></label>
+                  </div>
+
+                  <!-- ③ E-Commerce -->
+                  <button type="button" class="dd-cat-btn" onclick="toggleCat(this)">
+                    <svg class="cat-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    E-Commerce
+                    <span class="dd-cat-count" id="cnt-e">0</span>
+                  </button>
+                  <div class="dd-cat-body" style="display:none;">
+                    <div class="dd-subhead">Amazon</div>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Amazon Account Setup"             onchange="onSvc(this,'e')"><span>Account Setup &amp; Management</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Amazon Listing Development"       onchange="onSvc(this,'e')"><span>Listing Development</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Amazon Product Page Optimization" onchange="onSvc(this,'e')"><span>Product Page Optimization</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Amazon PPC Optimization"          onchange="onSvc(this,'e')"><span>PPC Campaign Optimization</span></label>
+                    <div class="dd-subhead">Independent Store</div>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Website Development"              onchange="onSvc(this,'e')"><span>Website Development</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="Product Page Development"         onchange="onSvc(this,'e')"><span>Product Page Development</span></label>
+                    <label class="dd-item"><input type="checkbox" name="services" value="SEO"                              onchange="onSvc(this,'e')"><span>Search Engine Optimization (SEO)</span></label>
+                  </div>
+
+                  <!-- ④ Other -->
+                  <button type="button" class="dd-cat-btn" onclick="toggleCat(this)" style="border-bottom:none;">
+                    <svg class="cat-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+                    Other
+                    <span class="dd-cat-count" id="cnt-x">0</span>
+                  </button>
+                  <div class="dd-cat-body" style="display:none;">
+                    <label class="dd-item l1"><input type="checkbox" name="services" value="Other / Not Listed" onchange="onSvc(this,'x')"><span>Service Not Listed Above</span></label>
+                  </div>
+
+                </div><!-- /svc-panel -->
+
+                <!-- Selected chips -->
+                <div class="svc-chips" id="svc-chips"></div>
+              </div>
+
+              <p id="svc-err" class="hidden" style="font-size:.74rem;color:#EF4444;margin-top:.4rem;">Please select at least one service.</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;" class="grid grid-cols-1 sm:grid-cols-2">
+              <div>
+                <label for="f-name" class="flabel">Full Name <span class="req">*</span></label>
+                <input type="text" id="f-name" name="name" required autocomplete="name" placeholder="Jane Smith" class="finput">
+                <p id="name-err" class="hidden" style="font-size:.73rem;color:#EF4444;margin-top:.3rem;">Required.</p>
+              </div>
+              <div>
+                <label for="f-phone" class="flabel">Phone <span class="req">*</span></label>
+                <input type="tel" id="f-phone" name="phone" required autocomplete="tel" placeholder="+1 (555) 000-0000" class="finput">
+                <p id="phone-err" class="hidden" style="font-size:.73rem;color:#EF4444;margin-top:.3rem;">Required.</p>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;" class="grid grid-cols-1 sm:grid-cols-2">
+              <div>
+                <label for="f-email" class="flabel">Email <span class="req">*</span></label>
+                <input type="email" id="f-email" name="email" required autocomplete="email" placeholder="jane@company.com" class="finput">
+                <p id="email-err" class="hidden" style="font-size:.73rem;color:#EF4444;margin-top:.3rem;">Valid email required.</p>
+              </div>
+              <div>
+                <label for="f-country" class="flabel">Country <span class="req">*</span></label>
+                <select id="f-country" name="country" required autocomplete="country-name" class="finput" style="cursor:pointer;background:white;">
+                  <option value="" disabled selected>Select…</option>
+                  <optgroup label="North America">
+                    <option>United States</option>
+                    <option>Canada</option>
+                    <option>Mexico</option>
+                  </optgroup>
+                  <optgroup label="Other Regions">
+                    <option>United Kingdom</option>
+                    <option>Australia</option>
+                    <option>India</option>
+                    <option>Germany</option>
+                    <option>France</option>
+                    <option>UAE</option>
+                    <option>Singapore</option>
+                    <option>Other</option>
+                  </optgroup>
+                </select>
+                <p id="country-err" class="hidden" style="font-size:.73rem;color:#EF4444;margin-top:.3rem;">Required.</p>
+              </div>
+            </div>
+
+            <div style="margin-bottom:1rem;">
+              <label for="f-company" class="flabel">Company Name <span style="font-weight:400;color:var(--ink-3);">(optional)</span></label>
+              <input type="text" id="f-company" name="company" autocomplete="organization" placeholder="Your Company Inc." class="finput">
+            </div>
+
+            <div style="margin-bottom:1.75rem;">
+              <label for="f-desc" class="flabel">What are you looking for? <span style="font-weight:400;color:var(--ink-3);">(optional)</span></label>
+              <textarea id="f-desc" name="description" rows="4" placeholder="Tell us about your business, current challenges, and the outcomes you're hoping to achieve..." class="finput" style="resize:none;"></textarea>
+            </div>
+
+            <button type="submit" id="sub-btn" class="btn-blue" style="padding:1rem;border:none;font-size:.95rem;">
+              <span id="btn-txt">Submit Inquiry</span>
+              <svg id="btn-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <svg id="btn-spn" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="spin hidden"><circle cx="12" cy="12" r="9" opacity=".2"/><path d="M12 3a9 9 0 019 9"/></svg>
+            </button>
+
+            <p style="font-size:.72rem;color:var(--ink-3);text-align:center;margin-top:.9rem;">
+              All information is kept strictly confidential. We respond within 24 hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer style="background:var(--navy);padding:3.5rem 0;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:2rem;">
+    <div>
+      <a href="#" style="text-decoration:none;display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem;">
+        <div style="width:28px;height:28px;background:white;display:flex;align-items:center;justify-content:center;">
+          <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M7 0L14 4V10L7 14L0 10V4L7 0Z" fill="var(--navy)"/></svg>
+        </div>
+        <span style="font-weight:800;font-size:.95rem;letter-spacing:-.02em;color:white;">Sterling<span style="color:#60A5FA;">Advisory</span></span>
+      </a>
+      <p style="font-size:.76rem;color:rgba(255,255,255,.3);max-width:240px;line-height:1.6;">North American consulting and operational support. Harvard affiliate MBA leadership.</p>
+    </div>
+    <nav style="display:flex;gap:1.75rem;flex-wrap:wrap;">
+      <a href="#services"  style="font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Services</a>
+      <a href="#approach"  style="font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Approach</a>
+      <a href="#team"      style="font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Team</a>
+      <a href="#portfolio" style="font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Portfolio</a>
+      <a href="#inquiry"   style="font-size:.8rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .15s;" onmouseover="this.style.color='rgba(255,255,255,.8)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Contact</a>
+    </nav>
+    <p style="font-size:.72rem;color:rgba(255,255,255,.18);">© 2025 Sterling Advisory Group.<br>All rights reserved.</p>
+  </div>
+</footer>
+
+
+<script>
+  // ── Service multi-select dropdown ──
+  function toggleSvcDd(e) {
+    e.stopPropagation();
+    var panel   = document.getElementById('svc-panel');
+    var trigger = document.getElementById('svc-trigger');
+    var isOpen  = panel.style.display !== 'none';
+    panel.style.display = isOpen ? 'none' : 'block';
+    trigger.classList.toggle('open', !isOpen);
+    trigger.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  function toggleCat(btn) {
+    var body   = btn.nextElementSibling;
+    var isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  function onSvc(cb, cat) {
+    // update category badge
+    var body  = cb.closest('.dd-cat-body');
+    var count = body.querySelectorAll('input[type="checkbox"]:checked').length;
+    var badge = document.getElementById('cnt-' + cat);
+    badge.textContent = count;
+    badge.classList.toggle('vis', count > 0);
+
+    // update trigger label
+    var total   = document.querySelectorAll('input[name="services"]:checked').length;
+    var lbl     = document.getElementById('svc-lbl');
+    var trigger = document.getElementById('svc-trigger');
+    if (total === 0) {
+      lbl.textContent = 'Select services of interest…';
+      lbl.className = 'ph';
+    } else {
+      lbl.textContent = total === 1 ? '1 service selected' : total + ' services selected';
+      lbl.className = '';
+    }
+
+    // render chips
+    var chips   = document.getElementById('svc-chips');
+    chips.innerHTML = '';
+    document.querySelectorAll('input[name="services"]:checked').forEach(function(inp) {
+      var chip  = document.createElement('span');
+      chip.className = 'chip';
+      var val   = inp.value.replace(/'/g, "\\'");
+      chip.innerHTML =
+        '<span>' + inp.value + '</span>' +
+        '<button type="button" class="chip-x" aria-label="Remove" onclick="removeChip(\'' + val + '\')">' +
+        '<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
+        '</button>';
+      chips.appendChild(chip);
+    });
+
+    // hide validation error if now satisfied
+    if (total > 0) {
+      document.getElementById('svc-err').classList.add('hidden');
+      trigger.classList.remove('err');
+    }
+  }
+
+  function removeChip(value) {
+    var cb = document.querySelector('input[name="services"][value="' + value + '"]');
+    if (!cb) return;
+    cb.checked = false;
+    // determine cat id from badge inside the same dd-cat-body
+    var body  = cb.closest('.dd-cat-body');
+    var badge = body.previousElementSibling.querySelector('.dd-cat-count');
+    var cat   = badge.id.replace('cnt-', '');
+    onSvc(cb, cat);
+  }
+
+  // close panel on outside click
+  document.addEventListener('click', function(e) {
+    var dd = document.getElementById('svc-dd');
+    if (!dd) return;
+    var panel   = document.getElementById('svc-panel');
+    var trigger = document.getElementById('svc-trigger');
+    if (panel.style.display !== 'none' && !dd.contains(e.target)) {
+      panel.style.display = 'none';
+      trigger.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ── Mobile menu ──
+  function toggleMenu() {
+    const m=document.getElementById('mobile-menu'),o=document.getElementById('ico-o'),c=document.getElementById('ico-c');
+    const open=m.classList.toggle('open');
+    o.style.display=open?'none':'block'; c.style.display=open?'block':'none';
+  }
+  document.addEventListener('click',function(e){
+    const m=document.getElementById('mobile-menu'),b=document.getElementById('menu-btn');
+    if(m.classList.contains('open')&&!m.contains(e.target)&&!b.contains(e.target))toggleMenu();
+  });
+
+  // ── Animate stat bars on scroll ──
+  const bars = document.querySelectorAll('.stat-bar-fill[data-width]');
+  const barObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.style.width = entry.target.dataset.width;
+        barObs.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.3});
+  bars.forEach(function(b){ barObs.observe(b); });
+
+  // ── Form validation ──
+  function mark(id,errId,bad){
+    const el=document.getElementById(id),er=document.getElementById(errId);
+    el.classList[bad?'add':'remove']('err'); er.classList[bad?'remove':'add']('hidden');
+    return !bad;
+  }
+
+  function handleSubmit(e){
+    e.preventDefault(); let ok=true;
+    const svcs=document.querySelectorAll('input[name="services"]:checked');
+    const se=document.getElementById('svc-err');
+    var trigger=document.getElementById('svc-trigger');
+    if(!svcs.length){se.classList.remove('hidden');trigger.classList.add('err');ok=false;}else{se.classList.add('hidden');trigger.classList.remove('err');}
+    if(!mark('f-name','name-err',!document.getElementById('f-name').value.trim()))ok=false;
+    if(!mark('f-phone','phone-err',!document.getElementById('f-phone').value.trim()))ok=false;
+    if(!mark('f-email','email-err',!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(document.getElementById('f-email').value)))ok=false;
+    if(!mark('f-country','country-err',!document.getElementById('f-country').value))ok=false;
+    if(!ok){
+      const first=document.querySelector('.finput.err')||document.querySelector('input[name="services"]');
+      if(first)first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    const btn=document.getElementById('sub-btn'),txt=document.getElementById('btn-txt'),
+          arr=document.getElementById('btn-arr'),spn=document.getElementById('btn-spn');
+    btn.disabled=true; btn.style.opacity='.75'; txt.textContent='Submitting…';
+    arr.classList.add('hidden'); spn.classList.remove('hidden');
+    // Replace with real API call
+    setTimeout(function(){
+      document.getElementById('inquiry-form').style.display='none';
+      document.getElementById('form-success').style.display='block';
+    },1400);
+  }
+
+  [['f-name','name-err'],['f-phone','phone-err'],['f-email','email-err'],['f-country','country-err']]
+    .forEach(function([id,err]){
+      document.getElementById(id).addEventListener('input',function(){
+        this.classList.remove('err');
+        document.getElementById(err).classList.add('hidden');
+      });
+    });
+</script>
+</body>
+</html>
