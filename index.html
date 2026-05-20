@@ -146,6 +146,17 @@
     }
     .step-num.done { border-color: var(--green); background: rgba(5,150,105,.15); color: #4ADE80; }
 
+    /* ─── Scroll Reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* ─── Form ─── */
     .finput {
       width: 100%; background: var(--white); border: 1.5px solid var(--rule);
@@ -1287,14 +1298,76 @@
     var btn=document.getElementById('sub-btn'),txt=document.getElementById('btn-txt'),arr=document.getElementById('btn-arr'),spn=document.getElementById('btn-spn');
     btn.disabled=true; btn.style.opacity='.75'; txt.textContent='Submitting…';
     arr.classList.add('hidden'); spn.classList.remove('hidden');
-    setTimeout(function(){
-      document.getElementById('inquiry-form').style.display='none';
-      document.getElementById('form-success').style.display='block';
-    },1400);
+    var svcList=Array.from(svcs).map(function(c){return c.value;}).join(', ');
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        access_key:'c8a498ab-4a44-4cc1-a37f-e811b084238e',
+        subject:'New Inquiry — '+document.getElementById('f-name').value.trim(),
+        name:document.getElementById('f-name').value.trim(),
+        email:document.getElementById('f-email').value.trim(),
+        phone:document.getElementById('f-phone').value.trim(),
+        country:document.getElementById('f-country').value,
+        company:document.getElementById('f-company').value.trim(),
+        services:svcList,
+        message:document.getElementById('f-desc').value.trim()
+      })
+    }).then(function(r){return r.json();}).then(function(res){
+      if(res.success){
+        document.getElementById('inquiry-form').style.display='none';
+        document.getElementById('form-success').style.display='block';
+      } else {
+        btn.disabled=false; btn.style.opacity='1'; txt.textContent='Submit Inquiry';
+        arr.classList.remove('hidden'); spn.classList.add('hidden');
+        alert('Something went wrong. Please try again or email us directly.');
+      }
+    }).catch(function(){
+      btn.disabled=false; btn.style.opacity='1'; txt.textContent='Submit Inquiry';
+      arr.classList.remove('hidden'); spn.classList.add('hidden');
+      alert('Something went wrong. Please try again or email us directly.');
+    });
   }
   [['f-name','name-err'],['f-phone','phone-err'],['f-email','email-err'],['f-country','country-err']].forEach(function(p){
     document.getElementById(p[0]).addEventListener('input',function(){this.classList.remove('err');document.getElementById(p[1]).classList.add('hidden');});
   });
+
+  /* ── Scroll animations ── */
+  (function(){
+    // Mark section headings (skip hero)
+    document.querySelectorAll('section').forEach(function(sec, i){
+      if(i === 0) return; // hero is above the fold
+      var h2 = sec.querySelector('h2');
+      var lbl = sec.querySelector('.s-label');
+      if(lbl) lbl.classList.add('reveal');
+      if(h2)  h2.classList.add('reveal');
+      var sub = sec.querySelector('h2 + p, .s-label + p');
+      if(sub) sub.classList.add('reveal');
+    });
+
+    // Mark cards with sibling stagger
+    document.querySelectorAll('.card, .card-dark').forEach(function(card){
+      card.classList.add('reveal');
+      var siblings = Array.from(card.parentElement.children).filter(function(c){
+        return c.classList.contains('card') || c.classList.contains('card-dark');
+      });
+      var idx = siblings.indexOf(card);
+      if(idx > 0) card.style.transitionDelay = (idx * 0.08) + 's';
+    });
+
+    if(!('IntersectionObserver' in window)){
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
 </script>
 </body>
 </html>
